@@ -1,7 +1,4 @@
 # Constant variable
-
-
-CC := gcc
-CLFAGS = -I../include -g -O2 -D_REENTRANT -Wall
-LIBS = ../lib/libunp.a -lresolv -lpthread
-
+CC := clang
+CFLAGS = -g -O2 -D_REENTRANT -Wall
+LIBS = -lunp -lresolv -lpthread

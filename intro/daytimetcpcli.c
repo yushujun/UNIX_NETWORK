@@ -1,4 +1,11 @@
-# include "../include/unp.h"
+# include "unp.h"
+
+/**
+ * Usage ./daytimetcpcli 129.6.15.28
+ * In docs find a IP address to used
+ * docs: https://tf.nist.gov/tf-cgi/servers.cgi
+ * debug use lldb
+ */
 
 int main(int argc, char **argv) {
   int sockfd, n;
@@ -8,12 +15,12 @@ int main(int argc, char **argv) {
   if (argc != 2) 
       err_quit("Usage: a.out <IPaddress>");
   
-  if ((sockfd == socket(AF_INET, SOCK_STREAM, 0)) < 0)
-      err_sys("socket error");
+	if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+		err_sys("socket error");
 
   bzero(&servaddr, sizeof(servaddr));
   servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(13);  /* daytime server */
+  servaddr.sin_port = htons(13);  /* daytime server host to network short */
   if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
     err_quit("inet_pton error for %s", argv[1]);
 
